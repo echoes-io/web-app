@@ -1,0 +1,8 @@
+"disabled.*.{ts,tsx}":
+  - "bash -c 'npm test'"
+
+"disabled.package.json":
+  - "bash -c 'npm test'"
+
+"*.{ts,tsx,json,yaml,graphql,md,css,scss,html}":
+  - "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
