@@ -1,0 +1,2 @@
+ALTER TABLE "chapters" DROP CONSTRAINT "chapters_timeline_name_arc_name_episode_number_part_number_number_pk";--> statement-breakpoint
+ALTER TABLE "chapters" ADD CONSTRAINT "chapters_pk" PRIMARY KEY("timeline_name","arc_name","episode_number","part_number","number");
