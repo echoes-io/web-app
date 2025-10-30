@@ -1,13 +1,27 @@
-import { defineConfig } from 'drizzle-kit'
-import * as dotenv from 'dotenv'
+import type { Config } from 'drizzle-kit';
 
-dotenv.config({ path: '.env.local' })
+import 'dotenv/config';
 
-export default defineConfig({
-  schema: './lib/db/models/index.ts',
-  out: './drizzle/migrations',
+declare global {
+  // eslint-disable-next-line ts/no-namespace
+  namespace NodeJS {
+    interface ProcessEnv {
+      DATABASE_URL_UNPOOLED: string;
+    }
+  }
+}
+
+if (!process.env.DATABASE_URL_UNPOOLED) {
+  throw new Error('DATABASE_URL_UNPOOLED environment variable is required');
+}
+
+export default {
+  schema: './lib/db/models',
+  out: './db',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    url: process.env.DATABASE_URL_UNPOOLED,
   },
-})
+  verbose: true,
+  strict: true,
+} satisfies Config;

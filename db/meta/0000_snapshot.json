@@ -64,12 +64,8 @@
           "name": "arcs_timeline_name_timelines_name_fk",
           "tableFrom": "arcs",
           "tableTo": "timelines",
-          "columnsFrom": [
-            "timeline_name"
-          ],
-          "columnsTo": [
-            "name"
-          ],
+          "columnsFrom": ["timeline_name"],
+          "columnsTo": ["name"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -77,10 +73,7 @@
       "compositePrimaryKeys": {
         "arcs_timeline_name_name_pk": {
           "name": "arcs_timeline_name_name_pk",
-          "columns": [
-            "timeline_name",
-            "name"
-          ]
+          "columns": ["timeline_name", "name"]
         }
       },
       "uniqueConstraints": {},
@@ -134,11 +127,7 @@
       "compositePrimaryKeys": {
         "episodes_timeline_name_arc_name_number_pk": {
           "name": "episodes_timeline_name_arc_name_number_pk",
-          "columns": [
-            "timeline_name",
-            "arc_name",
-            "number"
-          ]
+          "columns": ["timeline_name", "arc_name", "number"]
         }
       },
       "uniqueConstraints": {},
@@ -198,12 +187,7 @@
       "compositePrimaryKeys": {
         "parts_timeline_name_arc_name_episode_number_number_pk": {
           "name": "parts_timeline_name_arc_name_episode_number_number_pk",
-          "columns": [
-            "timeline_name",
-            "arc_name",
-            "episode_number",
-            "number"
-          ]
+          "columns": ["timeline_name", "arc_name", "episode_number", "number"]
         }
       },
       "uniqueConstraints": {},
@@ -329,13 +313,7 @@
       "compositePrimaryKeys": {
         "chapters_timeline_name_arc_name_episode_number_part_number_number_pk": {
           "name": "chapters_timeline_name_arc_name_episode_number_part_number_number_pk",
-          "columns": [
-            "timeline_name",
-            "arc_name",
-            "episode_number",
-            "part_number",
-            "number"
-          ]
+          "columns": ["timeline_name", "arc_name", "episode_number", "part_number", "number"]
         }
       },
       "uniqueConstraints": {},
