@@ -38,20 +38,36 @@
   - `/bloom/*` → tema bloom
   - Fallback a neutral
 
-### 1.2 Componenti UI Themed
-- [ ] Adattare shadcn/ui components ai temi
-- [ ] Variants per ogni timeline (Button, Card, Badge, etc.)
-- [ ] Documentazione componenti themed
+### 1.2 Componenti UI Themed ✅ COMPLETATO
+- [x] Adattare shadcn/ui components ai temi
+  - Button: variants `neutral`, `anima`, `eros`, `bloom` + outline variants
+  - Card: variants themed con background e border colors
+  - Badge: variants solid + outline per ogni timeline
+  - Alert: variants themed per ogni timeline
+- [x] ThemeDebugger con tab Preview
+  - Preview live di tutti i componenti themed
+  - Test rapido di tutte le varianti
+- [x] Documentazione variants inline nei componenti
 
 ---
 
 ## 📄 **FASE 2: Content Structure & Pages**
 
-### 2.1 Homepage & Layout
-- [ ] Homepage neutra con intro Echoes
-- [ ] Navigation principale con link timelines
-- [ ] Footer con credits e links
-- [ ] Layout responsive (mobile-first)
+### 2.1 Homepage & Layout ✅ COMPLETATO
+- [x] Homepage neutra con intro Echoes
+  - Hero section con descrizione
+  - Timeline cards con themed variants
+  - About section
+- [x] Navigation principale con link timelines
+  - Sticky header con logo
+  - Timeline links (Anima, Eros, Bloom)
+  - Dark mode toggle integrato
+- [x] Footer con credits e links
+  - About, Timelines, Resources sections
+  - Copyright notice
+- [x] Layout responsive (mobile-first)
+  - Grid responsive per timeline cards
+  - Mobile navigation
 
 ### 2.2 Timeline Pages
 - [ ] `/[timeline]` - Overview timeline con arcs
@@ -153,16 +169,17 @@
 
 ## 🎯 Current Sprint
 
-**Focus:** Fase 1.2 - Componenti UI Themed
+**Focus:** Fase 3.1 - Seed Database
 
 **Completato:**
-- ✅ Fase 1.1 - Theme System base (Provider, CSS variables, auto-route detection, debugger)
+- ✅ Fase 1.1 - Theme System base
+- ✅ Fase 1.2 - Componenti UI Themed
+- ✅ Fase 2.1 - Homepage & Layout
 
 **Next Steps:**
-1. Adattare componenti shadcn/ui ai temi timeline
-2. Creare variants themed per Button, Card, Badge
-3. Testare componenti con tutti i temi
-4. Documentare usage patterns
+1. Fase 3.1 - Seed Database (popolare timelines, arcs, episodes)
+2. Fase 2.2 - Timeline Pages (overview, arc, episode, chapter)
+3. Fase 2.3 - Chapter Reader
 
 ---
 

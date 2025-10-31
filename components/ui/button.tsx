@@ -19,6 +19,16 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        // Timeline themed variants
+        neutral: "bg-neutral-600 text-white hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600",
+        anima: "bg-anima-600 text-white hover:bg-anima-700 dark:bg-anima-700 dark:hover:bg-anima-600",
+        eros: "bg-eros-600 text-white hover:bg-eros-700 dark:bg-eros-700 dark:hover:bg-eros-600",
+        bloom: "bg-bloom-600 text-white hover:bg-bloom-700 dark:bg-bloom-700 dark:hover:bg-bloom-600",
+        // Timeline outline variants
+        "neutral-outline": "border-2 border-neutral-600 text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-950",
+        "anima-outline": "border-2 border-anima-600 text-anima-700 hover:bg-anima-50 dark:text-anima-300 dark:hover:bg-anima-950",
+        "eros-outline": "border-2 border-eros-600 text-eros-700 hover:bg-eros-50 dark:text-eros-300 dark:hover:bg-eros-950",
+        "bloom-outline": "border-2 border-bloom-600 text-bloom-700 hover:bg-bloom-50 dark:text-bloom-300 dark:hover:bg-bloom-950",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

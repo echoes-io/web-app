@@ -37,6 +37,59 @@ Complete documentation is available in the [`docs/`](./docs) folder:
 - **Tailwind CSS 4** + shadcn/ui
 - **Biome** (linter/formatter)
 
+## 🎨 Theming System
+
+Echoes uses a multi-timeline theming system with 4 color palettes from `@echoes-io/brand`:
+
+- **Neutral** - GitHub-inspired grays (default/generic pages)
+- **Anima** - Sage green (growth, tenderness)
+- **Eros** - Burgundy (passion, intensity)
+- **Bloom** - Terracotta peach (balance, discovery)
+
+Each theme supports **light** and **dark** mode (8 total variants).
+
+### Usage
+
+```tsx
+import { useTheme } from '@/lib/theme'
+import { Button, Card, Badge, Alert } from '@/components/ui'
+
+// Auto-theme from route (e.g., /anima/* → anima theme)
+function MyComponent() {
+  const { theme, mode, setMode } = useTheme()
+  
+  return (
+    <>
+      {/* Use themed variants */}
+      <Button variant="anima">Anima Button</Button>
+      <Card variant="eros">Eros Card</Card>
+      <Badge variant="bloom-outline">Bloom Badge</Badge>
+      
+      {/* Toggle dark mode */}
+      <button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+        Toggle Mode
+      </button>
+    </>
+  )
+}
+```
+
+### Theme Debugger
+
+In development mode, a theme debugger panel appears in the bottom-right corner:
+- Switch between timeline themes
+- Toggle light/dark mode
+- Preview all themed components
+- View color palettes
+
+### Available Variants
+
+All themed components support these variants:
+- `neutral`, `anima`, `eros`, `bloom` (solid)
+- `neutral-outline`, `anima-outline`, `eros-outline`, `bloom-outline` (outline)
+
+Components: `Button`, `Card`, `Badge`, `Alert`
+
 ## 📜 Scripts
 
 ```bash

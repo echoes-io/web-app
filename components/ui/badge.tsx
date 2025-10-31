@@ -17,6 +17,16 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
           "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+        // Timeline themed variants
+        neutral: "border-transparent bg-neutral-600 text-white [a&]:hover:bg-neutral-700",
+        anima: "border-transparent bg-anima-600 text-white [a&]:hover:bg-anima-700",
+        eros: "border-transparent bg-eros-600 text-white [a&]:hover:bg-eros-700",
+        bloom: "border-transparent bg-bloom-600 text-white [a&]:hover:bg-bloom-700",
+        // Timeline outline variants
+        "neutral-outline": "border-neutral-600 text-neutral-700 dark:text-neutral-300 [a&]:hover:bg-neutral-50 dark:[a&]:hover:bg-neutral-950",
+        "anima-outline": "border-anima-600 text-anima-700 dark:text-anima-300 [a&]:hover:bg-anima-50 dark:[a&]:hover:bg-anima-950",
+        "eros-outline": "border-eros-600 text-eros-700 dark:text-eros-300 [a&]:hover:bg-eros-50 dark:[a&]:hover:bg-eros-950",
+        "bloom-outline": "border-bloom-600 text-bloom-700 dark:text-bloom-300 [a&]:hover:bg-bloom-50 dark:[a&]:hover:bg-bloom-950",
       },
     },
     defaultVariants: {

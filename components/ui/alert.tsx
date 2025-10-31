@@ -11,6 +11,11 @@ const alertVariants = cva(
         default: "bg-card text-card-foreground",
         destructive:
           "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
+        // Timeline themed variants
+        neutral: "border-neutral-200 bg-neutral-50 text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-100",
+        anima: "border-anima-200 bg-anima-50 text-anima-900 dark:border-anima-800 dark:bg-anima-950 dark:text-anima-100",
+        eros: "border-eros-200 bg-eros-50 text-eros-900 dark:border-eros-800 dark:bg-eros-950 dark:text-eros-100",
+        bloom: "border-bloom-200 bg-bloom-50 text-bloom-900 dark:border-bloom-800 dark:bg-bloom-950 dark:text-bloom-100",
       },
     },
     defaultVariants: {
