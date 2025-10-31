@@ -1,6 +1,16 @@
+import { DarkModeToggle, ThemeDebugger } from '@/components/theme';
+
 export default function HomePage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-8">
+      {/* Dark Mode Toggle */}
+      <div className="fixed top-4 right-4">
+        <DarkModeToggle />
+      </div>
+
+      {/* Theme Debugger (dev only) */}
+      <ThemeDebugger />
+
       <div className="max-w-2xl space-y-6">
         <h1 className="text-4xl font-bold">Echoes</h1>
 
@@ -31,7 +41,7 @@ export default function HomePage() {
                 <strong>Episode</strong>: Episodio che sviluppa l'arco
               </li>
               <li>
-                <strong>Part</strong>: Parte di un episodio
+                <strong>Part</strong>: Parte di un episodio (opzionale)
               </li>
               <li>
                 <strong>Chapter</strong>: Capitolo con contenuto e metadata

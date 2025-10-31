@@ -2,6 +2,7 @@ import { relations } from 'drizzle-orm';
 import { integer, pgTable, primaryKey, text } from 'drizzle-orm/pg-core';
 
 import { arcs } from './arc';
+import { chapters } from './chapter';
 import { parts } from './part';
 
 export const episodes = pgTable(
@@ -32,6 +33,7 @@ export const episodesRelations = relations(episodes, ({ one, many }) => ({
     references: [arcs.timelineName, arcs.name],
   }),
   parts: many(parts),
+  chapters: many(chapters),
 }));
 
 export type Episode = typeof episodes.$inferSelect;

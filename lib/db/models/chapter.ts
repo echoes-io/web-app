@@ -1,6 +1,7 @@
 import { relations } from 'drizzle-orm';
 import { integer, pgTable, primaryKey, text } from 'drizzle-orm/pg-core';
 
+import { episodes } from './episode';
 import { parts } from './part';
 
 export const chapters = pgTable(
@@ -9,8 +10,8 @@ export const chapters = pgTable(
     timelineName: text('timeline_name').notNull(),
     arcName: text('arc_name').notNull(),
     episodeNumber: integer('episode_number').notNull(),
-    partNumber: integer('part_number').notNull(),
     number: integer('number').notNull(),
+    partNumber: integer('part_number'),
 
     // ChapterMetadata
     pov: text('pov').notNull(),
@@ -33,19 +34,17 @@ export const chapters = pgTable(
     {
       pk: primaryKey({
         name: 'chapters_pk',
-        columns: [
-          table.timelineName,
-          table.arcName,
-          table.episodeNumber,
-          table.partNumber,
-          table.number,
-        ],
+        columns: [table.timelineName, table.arcName, table.episodeNumber, table.number],
       }),
     },
   ],
 );
 
 export const chaptersRelations = relations(chapters, ({ one }) => ({
+  episode: one(episodes, {
+    fields: [chapters.timelineName, chapters.arcName, chapters.episodeNumber],
+    references: [episodes.timelineName, episodes.arcName, episodes.number],
+  }),
   part: one(parts, {
     fields: [chapters.timelineName, chapters.arcName, chapters.episodeNumber, chapters.partNumber],
     references: [parts.timelineName, parts.arcName, parts.episodeNumber, parts.number],

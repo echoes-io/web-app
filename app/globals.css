@@ -3,7 +3,74 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Timeline color palettes from @echoes-io/brand */
 @theme inline {
+  /* Neutral palette */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #09090b;
+
+  /* Anima palette (sage green) */
+  --color-anima-50: #f0fdf6;
+  --color-anima-100: #ddfbe8;
+  --color-anima-200: #bef5d3;
+  --color-anima-300: #8eecb4;
+  --color-anima-400: #56db8e;
+  --color-anima-500: #2fc470;
+  --color-anima-600: #20a558;
+  --color-anima-700: #1c8449;
+  --color-anima-800: #1a693d;
+  --color-anima-900: #175634;
+  --color-anima-950: #0a301b;
+
+  /* Eros palette (burgundy) */
+  --color-eros-50: #fef2f3;
+  --color-eros-100: #fde3e6;
+  --color-eros-200: #fbccd2;
+  --color-eros-300: #f7a8b3;
+  --color-eros-400: #f17689;
+  --color-eros-500: #e74c64;
+  --color-eros-600: #d32f4f;
+  --color-eros-700: #b22240;
+  --color-eros-800: #951e3b;
+  --color-eros-900: #7f1d37;
+  --color-eros-950: #460c1a;
+
+  /* Bloom palette (terracotta peach) */
+  --color-bloom-50: #fef8f3;
+  --color-bloom-100: #fdeee6;
+  --color-bloom-200: #fadacc;
+  --color-bloom-300: #f6bfa8;
+  --color-bloom-400: #f09b74;
+  --color-bloom-500: #e87a47;
+  --color-bloom-600: #d96129;
+  --color-bloom-700: #b64d1f;
+  --color-bloom-800: #92401e;
+  --color-bloom-900: #75361d;
+  --color-bloom-950: #3f1a0d;
+
+  /* Theme-aware colors (dynamic based on data-theme) */
+  --color-theme-50: var(--theme-50);
+  --color-theme-100: var(--theme-100);
+  --color-theme-200: var(--theme-200);
+  --color-theme-300: var(--theme-300);
+  --color-theme-400: var(--theme-400);
+  --color-theme-500: var(--theme-500);
+  --color-theme-600: var(--theme-600);
+  --color-theme-700: var(--theme-700);
+  --color-theme-800: var(--theme-800);
+  --color-theme-900: var(--theme-900);
+  --color-theme-950: var(--theme-950);
+
+  /* Existing shadcn theme tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -41,6 +108,64 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Dynamic theme variables - change based on data-theme attribute */
+:root,
+[data-theme="neutral"] {
+  --theme-50: var(--color-neutral-50);
+  --theme-100: var(--color-neutral-100);
+  --theme-200: var(--color-neutral-200);
+  --theme-300: var(--color-neutral-300);
+  --theme-400: var(--color-neutral-400);
+  --theme-500: var(--color-neutral-500);
+  --theme-600: var(--color-neutral-600);
+  --theme-700: var(--color-neutral-700);
+  --theme-800: var(--color-neutral-800);
+  --theme-900: var(--color-neutral-900);
+  --theme-950: var(--color-neutral-950);
+}
+
+[data-theme="anima"] {
+  --theme-50: var(--color-anima-50);
+  --theme-100: var(--color-anima-100);
+  --theme-200: var(--color-anima-200);
+  --theme-300: var(--color-anima-300);
+  --theme-400: var(--color-anima-400);
+  --theme-500: var(--color-anima-500);
+  --theme-600: var(--color-anima-600);
+  --theme-700: var(--color-anima-700);
+  --theme-800: var(--color-anima-800);
+  --theme-900: var(--color-anima-900);
+  --theme-950: var(--color-anima-950);
+}
+
+[data-theme="eros"] {
+  --theme-50: var(--color-eros-50);
+  --theme-100: var(--color-eros-100);
+  --theme-200: var(--color-eros-200);
+  --theme-300: var(--color-eros-300);
+  --theme-400: var(--color-eros-400);
+  --theme-500: var(--color-eros-500);
+  --theme-600: var(--color-eros-600);
+  --theme-700: var(--color-eros-700);
+  --theme-800: var(--color-eros-800);
+  --theme-900: var(--color-eros-900);
+  --theme-950: var(--color-eros-950);
+}
+
+[data-theme="bloom"] {
+  --theme-50: var(--color-bloom-50);
+  --theme-100: var(--color-bloom-100);
+  --theme-200: var(--color-bloom-200);
+  --theme-300: var(--color-bloom-300);
+  --theme-400: var(--color-bloom-400);
+  --theme-500: var(--color-bloom-500);
+  --theme-600: var(--color-bloom-600);
+  --theme-700: var(--color-bloom-700);
+  --theme-800: var(--color-bloom-800);
+  --theme-900: var(--color-bloom-900);
+  --theme-950: var(--color-bloom-950);
 }
 
 :root {
