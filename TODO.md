@@ -92,12 +92,18 @@
 - [ ] Script seed da struttura content esistente
 - [ ] Validazione dati
 
-### 3.2 Content Sync System
-- [ ] GitHub Action per sync automatico
-- [ ] API route `/api/content/sync`
-- [ ] Parse frontmatter + markdown
-- [ ] Upsert chapters nel database
-- [ ] Webhook trigger on push
+### 3.2 Content Sync System ✅ COMPLETATO
+- [x] API route `/api/content/sync`
+  - POST endpoint con autenticazione Bearer token
+  - Validazione Zod del payload
+  - Calcolo automatico text stats (words, characters, reading time)
+  - Upsert logic (conflict on PK → update)
+- [x] Documentazione completa
+  - API specs in `docs/CONTENT_SYNC.md`
+  - Esempio GitHub Action workflow
+  - Script sync JavaScript di esempio
+- [x] Test script (`scripts/test-sync-api.sh`)
+- [x] Environment variable `CONTENT_SYNC_TOKEN`
 
 ### 3.3 Content API
 - [ ] `/api/timelines` - lista timelines
@@ -169,17 +175,19 @@
 
 ## 🎯 Current Sprint
 
-**Focus:** Fase 3.1 - Seed Database
+**Focus:** Fase 3 - Database & Content Sync
 
 **Completato:**
 - ✅ Fase 1.1 - Theme System base
 - ✅ Fase 1.2 - Componenti UI Themed
 - ✅ Fase 2.1 - Homepage & Layout
+- ✅ Fase 3.2 - Content Sync API
 
 **Next Steps:**
-1. Fase 3.1 - Seed Database (popolare timelines, arcs, episodes)
-2. Fase 2.2 - Timeline Pages (overview, arc, episode, chapter)
-3. Fase 2.3 - Chapter Reader
+1. Testare API sync con dati reali da timeline-anima
+2. Creare GitHub Action nel repo timeline-anima
+3. Fase 3.1 - Seed Database (timelines, arcs, episodes metadata)
+4. Fase 2.2 - Timeline Pages
 
 ---
 
