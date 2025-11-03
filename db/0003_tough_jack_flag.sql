@@ -1,0 +1,1 @@
+ALTER TABLE "chapters" ALTER COLUMN "part_number" SET NOT NULL;

@@ -11,7 +11,7 @@ export const chapters = pgTable(
     arcName: text('arc_name').notNull(),
     episodeNumber: integer('episode_number').notNull(),
     number: integer('number').notNull(),
-    partNumber: integer('part_number'),
+    partNumber: integer('part_number').notNull(),
 
     // ChapterMetadata
     pov: text('pov').notNull(),

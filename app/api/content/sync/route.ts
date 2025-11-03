@@ -1,56 +1,16 @@
+import { ChapterSchema } from '@echoes-io/models';
 import { type NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { db } from '@/lib/db';
 import { chapters } from '@/lib/db/models';
 
-// Validation schema for sync request
-const SyncRequestSchema = z.object({
-  timeline: z.string().min(1),
-  arc: z.string().min(1),
-  episode: z.number().int().positive(),
-  part: z.number().int().positive().nullable(),
-  chapter: z.number().int().positive(),
-  pov: z.string().min(1),
-  title: z.string().min(1),
-  date: z.string().min(1),
-  summary: z.string().min(1),
-  location: z.string().min(1),
-  outfit: z.string().nullable().optional(),
-  kink: z.string().nullable().optional(),
-  content: z.string().min(1),
+// Extend ChapterSchema with content field for sync
+const SyncRequestSchema = ChapterSchema.extend({
+  content: z.string().min(1, 'Content is required'),
 });
 
 type SyncRequest = z.infer<typeof SyncRequestSchema>;
-
-/**
- * Calculate text statistics from markdown content
- */
-function calculateTextStats(content: string) {
-  // Remove markdown syntax for accurate counting
-  const plainText = content
-    .replace(/^#{1,6}\s+/gm, '') // Remove headers
-    .replace(/\*\*(.+?)\*\*/g, '$1') // Remove bold
-    .replace(/\*(.+?)\*/g, '$1') // Remove italic
-    .replace(/\[(.+?)\]\(.+?\)/g, '$1') // Remove links
-    .trim();
-
-  const words = plainText.split(/\s+/).filter((w) => w.length > 0).length;
-  const characters = plainText.length;
-  const charactersNoSpaces = plainText.replace(/\s/g, '').length;
-  const paragraphs = content.split(/\n\n+/).filter((p) => p.trim().length > 0).length;
-  const sentences = plainText.split(/[.!?]+/).filter((s) => s.trim().length > 0).length;
-  const readingTimeMinutes = Math.ceil(words / 200); // ~200 words per minute
-
-  return {
-    words,
-    characters,
-    charactersNoSpaces,
-    paragraphs,
-    sentences,
-    readingTimeMinutes,
-  };
-}
 
 /**
  * Verify sync token
@@ -83,18 +43,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data: SyncRequest = SyncRequestSchema.parse(body);
 
-    // Calculate text statistics
-    const stats = calculateTextStats(data.content);
-
     // Upsert chapter to database
     await db
       .insert(chapters)
       .values({
-        timelineName: data.timeline,
-        arcName: data.arc,
-        episodeNumber: data.episode,
-        partNumber: data.part,
-        number: data.chapter,
+        timelineName: data.timelineName,
+        arcName: data.arcName,
+        episodeNumber: data.episodeNumber,
+        partNumber: data.partNumber,
+        number: data.number,
         pov: data.pov,
         title: data.title,
         summary: data.summary,
@@ -102,12 +59,17 @@ export async function POST(request: NextRequest) {
         date: data.date,
         outfit: data.outfit || null,
         kink: data.kink || null,
-        ...stats,
+        words: data.words,
+        characters: data.characters,
+        charactersNoSpaces: data.charactersNoSpaces,
+        paragraphs: data.paragraphs,
+        sentences: data.sentences,
+        readingTimeMinutes: data.readingTimeMinutes,
       })
       .onConflictDoUpdate({
         target: [chapters.timelineName, chapters.arcName, chapters.episodeNumber, chapters.number],
         set: {
-          partNumber: data.part,
+          partNumber: data.partNumber,
           pov: data.pov,
           title: data.title,
           summary: data.summary,
@@ -115,20 +77,32 @@ export async function POST(request: NextRequest) {
           date: data.date,
           outfit: data.outfit || null,
           kink: data.kink || null,
-          ...stats,
+          words: data.words,
+          characters: data.characters,
+          charactersNoSpaces: data.charactersNoSpaces,
+          paragraphs: data.paragraphs,
+          sentences: data.sentences,
+          readingTimeMinutes: data.readingTimeMinutes,
         },
       });
 
     return NextResponse.json({
       success: true,
       chapter: {
-        timeline: data.timeline,
-        arc: data.arc,
-        episode: data.episode,
-        part: data.part,
-        chapter: data.chapter,
+        timelineName: data.timelineName,
+        arcName: data.arcName,
+        episodeNumber: data.episodeNumber,
+        partNumber: data.partNumber,
+        number: data.number,
       },
-      stats,
+      stats: {
+        words: data.words,
+        characters: data.characters,
+        charactersNoSpaces: data.charactersNoSpaces,
+        paragraphs: data.paragraphs,
+        sentences: data.sentences,
+        readingTimeMinutes: data.readingTimeMinutes,
+      },
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
